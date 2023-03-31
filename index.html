@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .divider:after,
+        .divider:before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+    </style>
+  </head>
+  <body>
+    <section class="vh-100">
+        <div class="container py-5 h-100">
+            <div class="row d-flex align-items-center justify-content-center h-100">
+                <div class="col-md-8 col-lg-7 col-xl-6">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg" class="img-fluid" alt="Phone image">
+                </div>
+                <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                  <div id="liveAlertPlaceholder"></div>
+                    <form id="signup-form">
+                        <!-- User Name input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="username">User Name</label>
+                            <input type="text" id="username" class="form-control form-control-lg" />
+                        </div>
+                        
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="form1Example23">Password</label>
+                            <input type="password" id="passwords" class="form-control form-control-lg" />
+                        </div>
+                        
+                        <!-- email input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label" for="email">Email</label>
+                            <input type="email" id="email" class="form-control form-control-lg" />
+                        </div>
+
+                        <!-- Number input -->
+                        <div class="form-outline mb-4">
+                          <label class="form-label" for="number">Phone Number</label>
+                          <input type="number" id="number" class="form-control form-control-lg" />
+                        </div>
+
+                        <div class="d-flex justify-content-around align-items-center mb-4">
+                          <!-- Checkbox -->
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+                            <label class="form-check-label" for="form1Example3"> Remember me </label>
+                          </div>
+                        </div>
+
+
+
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                          <button class="btn btn-primary btn-lg btn-block" style="padding-left: 5px;">SignUP</button>
+                          <p class="small fw-bold mt-2 pt-1 mb-0">AlreadyHaveAnAccount? <a href="signin.html"class="link-danger">Register</a></p>
+                        </div>
+
+
+
+                        <!-- Submit button 
+                        <button class="btn btn-primary btn-lg btn-block" style="padding-left: 5px; text-align: center;">Sign Up</button>
+                        <a href="signin.html" style="padding-right: 5px;">AlreadyHaveAnAccount?</a>
+                        -->
+                        <!--
+                                                  <div class="divider d-flex align-items-center my-4">
+                          <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+                        </div>
+                        <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                          <p class="lead fw-normal mb-0 me-1">Sign in with</p>
+                          <button type="button" class="btn btn-primary btn-floating mx-1">
+                            <i class="fab fa-facebook-f"></i>
+                          </button>
+              
+                          <button type="button" class="btn btn-primary btn-floating mx-1">
+                            <i class="fab fa-twitter"></i>
+                          </button>
+              
+                          <button type="button" class="btn btn-primary btn-floating mx-1">
+                            <i class="fab fa-google"></i>
+                          </button>
+                        </div>
+                        -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <script>
+      document.getElementById('signup-form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const username = document.getElementById('username').value;
+        const passwords = document.getElementById('passwords').value;
+        const email = document.getElementById('email').value;
+        const number = document.getElementById('number').value;
+        const response = await fetch('http://localhost:3000/signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username, passwords, email, number })
+        });
+        if (response.ok) {
+          alert('Sign up successful!');
+        } else {
+          alert('Sign up failed!');
+        }
+      });
+    </script>
+  </body>
+</html>
