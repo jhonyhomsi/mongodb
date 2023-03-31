@@ -100,15 +100,15 @@
       document.getElementById('signup-form').addEventListener('submit', async (event) => {
         event.preventDefault();
         const username = document.getElementById('username').value;
-        const passwords = document.getElementById('passwords').value;
+        const password = document.getElementById('passwords').value;
         const email = document.getElementById('email').value;
         const number = document.getElementById('number').value;
-        const response = await fetch('http://localhost:3000/signup', {
+        const response = await fetch('https://mongodb-h8b7.onrender.com/signup', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ username, passwords, email, number })
+          body: JSON.stringify({ username, password, email, number })
         });
         if (response.ok) {
           alert('Sign up successful!');
