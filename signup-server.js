@@ -21,16 +21,24 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     const db = client.db('AppDatabase');
     const usersCollection = db.collection('users');
 
-    app.post('/signup', (req, res) => {
+    app.post('/signup', async (req, res) => {
       const userData = req.body;
-      usersCollection.insertOne(userData)
-        .then(result => {
-          res.sendStatus(201);
-        })
-        .catch(error => {
-          console.error(error);
-          res.sendStatus(500);
-        });
+    
+      // Check if username or email already exist
+      const user = await usersCollection.findOne({ $or: [{ username: userData.username }, { email: userData.email }] });
+      if (user) {
+        res.status(409).json({ error: 'Username or email already exists' });
+      } else {
+        // Insert the new user into the database
+        usersCollection.insertOne(userData)
+          .then(result => {
+            res.sendStatus(201);
+          })
+          .catch(error => {
+            console.error(error);
+            res.sendStatus(500);
+          });
+      }
     });
 
     app.listen(3000, () => {
