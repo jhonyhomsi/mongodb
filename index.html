@@ -111,7 +111,7 @@
           body: JSON.stringify({ username, password, email, number })
         });
         if (response.ok) {
-          alert('Sign up successful!');
+          window.location.href = 'https://jhonyhomsi.github.io/signin?username=' + username;
         } else {
           alert('Sign up failed!');
         }
