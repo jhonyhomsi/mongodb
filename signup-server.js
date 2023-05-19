@@ -13,12 +13,12 @@ app.use((req, res, next) => {
 });
 
 // Replace with your own connection string
-const connectionString = 'mongodb+srv://jhony-33:Serafim12@cluster0.j3va4xj.mongodb.net/?retryWrites=true&w=majority';
+const connectionString = 'mongodb+srv://jhony-33:Serafim12@cluster0.v4dsgzx.mongodb.net/';
 
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
   .then(client => {
     console.log('Connected to Database');
-    const db = client.db('AppDatabase');
+    const db = client.db('test');
     const usersCollection = db.collection('users');
 
     app.post('/signup', async (req, res) => {
