@@ -18,7 +18,7 @@ const connectionString = 'mongodb+srv://jhony-33:Serafim12@cluster0.v4dsgzx.mong
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
   .then(client => {
     console.log('Connected to Database');
-    const db = client.db('test');
+    const db = client.db('Sign');
     const usersCollection = db.collection('users');
 
     app.post('/signup', async (req, res) => {
